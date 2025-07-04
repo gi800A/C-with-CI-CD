@@ -1,0 +1,7 @@
+
+name: CI for C Code
+
+on:
+    push:
+        path:
+            -'!release_notes'
