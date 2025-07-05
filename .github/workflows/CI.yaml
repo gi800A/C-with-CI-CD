@@ -24,7 +24,9 @@ jobs:
             run: make clean || echo "no build directory to clean"
             
           - name: setup enviroment
-            run: mkdir -p build bin logs
+            run: | 
+               mkdir -p build bin logs
+               TIMESTAMP=$(date + '%Y%m%d')
             
           - name: build with make
             run: | 
