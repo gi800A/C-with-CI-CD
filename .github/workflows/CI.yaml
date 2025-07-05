@@ -30,15 +30,15 @@ jobs:
             
           - name: build with make
             run: | 
-                echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_output_£{{ env.TIMESTAMP }}.log 
-                make 2>&1 | tee -a logs/build_output_£{{ env.TIMESTAMP }}.log
-                echo -e "----- build end $(date +'%d-%m-%Y %H:%M:%S') -----\n" | tee -a logs/build_output_£{{ env.TIMESTAMP }}.log
+                echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_output_${{ env.TIMESTAMP }}.log 
+                make 2>&1 | tee -a logs/build_output_${{ env.TIMESTAMP }}.log
+                echo -e "----- build end $(date +'%d-%m-%Y %H:%M:%S') -----\n" | tee -a logs/build_output_${{ env.TIMESTAMP }}.log
             
           - name: upload logs
             uses: actions/upload-artifact@v4
             with:
                 name: build-logs
-                path: logs/build_output_£{{ env.TIMESTAMP }}.log
+                path: logs/build_output_${{ env.TIMESTAMP }}.log
             
           - name: Check if binary exists
             run: |
