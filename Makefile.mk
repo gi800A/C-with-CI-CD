@@ -10,6 +10,7 @@ all: $(BIN)
 # Compile source files into object files
 build/%.o: SRC/%.c
 	@mkdir -p build
+	@echo "Compilazione: $< → $@"
 	$(CC) -c $< -o $@
 
 # Link object files into final binary
