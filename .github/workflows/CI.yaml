@@ -8,12 +8,11 @@ on:
           - 'main'
           - '**'   #all banches name
         path-ignore: #don't run workflow if changes to files
-            -'release_notes'
-            -'.gitignore'
+            - 'release_notes'
+            - '.gitignore'
             - 'README.md'
 
-
- jobs:
+jobs:
     build:
         runs-on: ubuntu-latest
         
@@ -29,8 +28,8 @@ on:
             
           - name: build with make
             run: | 
-                echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_outputs.log 
-                make 2>&1 | tee logs/build_outputs.log
+                echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_output.log 
+                make 2>&1 | tee -a logs/build_output.log
             
           - name: Check if binary exists
             run: |
