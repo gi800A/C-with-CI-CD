@@ -26,7 +26,7 @@ jobs:
           - name: setup enviroment
             run: | 
                mkdir -p build bin logs
-               TIMESTAMP=$(date + '%Y%m%d')
+               echo "TIMESTAMP=$(date +'%Y%m%d')" >> $GITHUB_ENV
             
           - name: build with make
             run: | 
