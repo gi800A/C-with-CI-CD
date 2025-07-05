@@ -1,0 +1,12 @@
+# File credentials
+.git-credentials
+
+# File build
+*.o
+*.exe
+obj/
+
+# File temporanei
+*.log
+*.tmp
+

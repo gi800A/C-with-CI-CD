@@ -1,19 +1,24 @@
 CC = gcc
 
-SRC=$(wildcard SRC/*.c)
-OBJ = $(SRC:src/%.c=build/%.o)
-BIN = build/
+SRC := $(wildcard SRC/*.c)
+OBJ := $(patsubst SRC/%.c, build/%.o, $(SRC))
+BIN := bin/my_program
 
-echo "Compiling"
+# Default target
+all: $(BIN)
 
+# Compile source files into object files
 build/%.o: SRC/%.c
+	@mkdir -p build
 	$(CC) -c $< -o $@
 
+# Link object files into final binary
 $(BIN): $(OBJ)
+	@mkdir -p bin
 	$(CC) $(OBJ) -o $(BIN)
 
+# Clean build files
 clean:
-	rm -rf build/*.o $(BIN)
+	rm -rf build/*.o bin/my_program
 
-
-.PHONY: clean
+.PHONY: all clean

@@ -1,7 +1,18 @@
 
-name: CI for C Code
+name: C build code
 
 on:
+    workflow_dispatch:
+    
     push:
-        path:
+        branches:
+          - 'main'
+          - '**'   #all banches name
+        path-ignore:
             -'!release_notes'
+
+    
+ jobs:
+    build:
+        run-on: ubuntu-latest
+    
