@@ -1,10 +1,11 @@
-// main.c
-#include <stdio.h>
-#include "Rte_BaseFunc.h"
+// BaseFunc.h
+#pragma once
 
+//types
 typedef unsigned char BYTE;
 
-BYTE InitSts;
+//Variables
+extern BYTE InitSts;
 
-void Init_Cntrlr();
-
+//Prototypes
+void Init_Cntrlr(void);

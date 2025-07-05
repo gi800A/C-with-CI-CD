@@ -31,18 +31,18 @@ jobs:
                 echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_output.log 
                 make 2>&1 | tee -a logs/build_output.log
             
+          - name: upload logs
+            uses: actions/upload-artifact@v4
+            with:
+                name: build-logs
+                path: logs/build_output.log
+            
           - name: Check if binary exists
             run: |
                 if [ ! -f bin/my_program ]; then
                     echo "Binary not found. check for build fail."
                     exit 1
                 fi
-    
-          - name: Upload logs
-            uses: actions/upload-artifact@v4
-            with:
-                name: build-logs
-                path: logs/build_output.log
 
           - name: Upload binary
             uses: actions/upload-artifact@v4

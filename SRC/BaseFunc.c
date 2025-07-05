@@ -1,8 +1,9 @@
 // main.c
 #include <stdio.h>
+#include "BaseFunc.h"
 #include "Rte_BaseFunc.h"
 
-extern InitSts;
+BYTE InitSts;
 
 void Init_Cntrlr(){
 	printf("controller init");
