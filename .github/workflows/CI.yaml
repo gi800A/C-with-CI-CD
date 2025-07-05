@@ -28,7 +28,7 @@ jobs:
             
           - name: build with make
             run: | 
-                echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_output.log 
+                echo -e "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----\n" | tee logs/build_output.log 
                 make 2>&1 | tee -a logs/build_output.log
             
           - name: upload logs
