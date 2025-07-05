@@ -8,11 +8,46 @@ on:
         branches:
           - 'main'
           - '**'   #all banches name
-        path-ignore:
-            -'!release_notes'
+        path-ignore: #don't run workflow if changes to files
+            -'release_notes'
+            -'.gitignore'
+            - 'README.md'
 
-    
+
  jobs:
     build:
-        run-on: ubuntu-latest
+        runs-on: ubuntu-latest
+        
+        steps:
+          - name: checkout code
+            uses: actions/checkout@v4
+            
+          - name: clean previous build diectories
+            run: make clean || echo "no build directory to clean"
+            
+          - name: setup enviroment
+            run: mkdir -p build bin logs
+            
+          - name: build with make
+            run: | 
+                echo "----- build start $(date +'%d-%m-%Y %H:%M:%S') -----" | tee logs/build_outputs.log 
+                make 2>&1 | tee logs/build_outputs.log
+            
+          - name: Check if binary exists
+            run: |
+                if [ ! -f bin/my_program ]; then
+                    echo "Binary not found. check for build fail."
+                    exit 1
+                fi
     
+          - name: Upload logs
+            uses: actions/upload-artifact@v4
+            with:
+                name: build-logs
+                path: logs/build_output.log
+
+          - name: Upload binary
+            uses: actions/upload-artifact@v4
+            with:
+                name: binary
+                path: bin/my_program    
